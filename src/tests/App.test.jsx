@@ -43,7 +43,7 @@ describe('App', () => {
     expect(screen.getByText('OUR STORE')).toBeInTheDocument();
   });
 
-  it('renders Categories components', () => {
+  it('renders Categories component', () => {
     render(
       <Provider store={store}>
         <App />
