@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '../../store/products';
+import { addToCartAndUpdateInventory } from '../../store/cart';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { addToCartAndUpdateInventory } from '../../store/cart';
 
 const Products = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  const products = useSelector((state) => state.products.list);
+  const loading = useSelector((state) => state.products.loading);
+  const activeCategory = useSelector((state) => state.categories.activeCategory);
+
   const handleAddToCart = (product) => {
-    if (product.inventoryCount > 0) {
+    console.log('Adding to cart:', product);
+  
+    if (product.inStock > 0) {
       dispatch(addToCartAndUpdateInventory(product));
     }
   };
   
-  const products = useSelector((state) => state.products.list);
-  const activeCategory = useSelector((state) => state.categories.activeCategory);
 
-  const filteredProducts = products.filter((product) => product.category === activeCategory);
+  const filteredProducts = products.filter(
+    (product) => product.category === activeCategory
+  );
+
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
 
   return (
     <Grid container spacing={2} justifyContent="center">
@@ -39,7 +55,7 @@ const Products = () => {
               </Typography>
               <Typography>
               Inventory: (
-              {product.inventoryCount})
+              {product.inStock})
               </Typography>
             </CardContent>
             <CardActions>

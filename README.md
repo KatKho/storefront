@@ -1,6 +1,6 @@
 # Storefront
 
-The Storefront application is a fully functional e-commerce storefront built using React with Redux, showcasing a list of products that users can add to a shopping cart.
+Storefront is a dynamic e-commerce platform built to simulate a real-world shopping experience. Developed with React and Redux, it showcases responsive design principles and state management patterns to provide a seamless user experience. Users can browse products, filter them by categories, and manage their shopping cart with intuitive interactions.
 
 ## Project Structure
 
@@ -20,6 +20,7 @@ The application is divided into various components, each responsible for a part 
 
 - [PR1](https://github.com/KatKho/storefront/pull/1)
 - [PR2](https://github.com/KatKho/storefront/pull/2)
+- [PR3](https://github.com/KatKho/storefront/pull/3)
 
 ## Contributors
 
